@@ -42,6 +42,7 @@ gem "bootsnap", require: false
 # For compiling and bundling JavaScript. Read more: https://github.com/shakacode/shakapacker
 gem "shakapacker", "~> 6.6.0"
 
+gem "pry-byebug"
 gem "react-rails", "~> 2.7.1"
 
 group :development, :test do
