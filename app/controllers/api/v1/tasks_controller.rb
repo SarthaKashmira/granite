@@ -15,11 +15,11 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def show
-    render_json({ task: task })
+    render_json({ task: @task })
   end
 
   def update
-    task.update!(task_params)
+    @task.update!(task_params)
     render_notice(t("successfully_updated"))
   end
 
