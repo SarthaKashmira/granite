@@ -6,7 +6,7 @@ import tasksApi from "apis/tasks";
 import { PageLoader, PageTitle, Container } from "components/commons";
 import Table from "components/Tasks/Table";
 
-const Dashboard = () => {
+const Dashboard = ({ history }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,11 +16,15 @@ const Dashboard = () => {
         data: { tasks },
       } = await tasksApi.fetch();
       setTasks(tasks);
-      setLoading(false);
     } catch (error) {
       logger.error(error);
+    } finally {
       setLoading(false);
     }
+  };
+
+  const showTask = slug => {
+    history.push(`/tasks/${slug}/show`);
   };
 
   useEffect(() => {
@@ -47,9 +51,9 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <div className="flex flex-col gap-y-8 ">
+      <div className="flex flex-col gap-y-8">
         <PageTitle title="Todo list" />
-        <Table data={tasks} />
+        <Table data={tasks} showTask={showTask} />
       </div>
     </Container>
   );
