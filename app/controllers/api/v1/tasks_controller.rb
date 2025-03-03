@@ -4,18 +4,18 @@ class Api::V1::TasksController < ApplicationController
   before_action :load_task!, only: %i[show update destroy]
   def index
     tasks = Task.all.as_json(include: { assigned_user: { only: %i[name id] } })
+    Rails.logger.debug "Tasks: #{tasks}"
     render_json({ tasks: })
   end
 
   def create
-    Rails.logger.debug "Task params: #{task_params}"
     task = Task.new(task_params)
     task.save!
     render_notice(t("successfully_created"))
   end
 
   def show
-    render_json({ task: @task, assigned_user: @task.assigned_user })
+    render
   end
 
   def update
