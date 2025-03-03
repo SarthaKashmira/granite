@@ -9,7 +9,6 @@ class Task < ApplicationRecord
     format: { with: VALID_TITLE_REGEX }
   validates :slug, uniqueness: true
   validate :slug_not_changed
-  after_validation :set_title
 
   before_create :set_slug
 
@@ -36,9 +35,5 @@ class Task < ApplicationRecord
       if will_save_change_to_slug? && self.persisted?
         errors.add(:slug, I18n.t("task.slug.immutable"))
       end
-    end
-
-    def set_title
-      self.title = "Pay electricity bill"
     end
 end

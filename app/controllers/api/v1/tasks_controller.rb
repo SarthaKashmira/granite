@@ -3,19 +3,19 @@
 class Api::V1::TasksController < ApplicationController
   before_action :load_task!, only: %i[show update destroy]
   def index
-    tasks = Task.all
-    Rails.logger.debug "Tasks found: #{tasks.count}"
-    render status: :ok, json: { tasks: }
+    tasks = Task.all.as_json(include: { assigned_user: { only: %i[name id] } })
+    render_json({ tasks: })
   end
 
   def create
+    Rails.logger.debug "Task params: #{task_params}"
     task = Task.new(task_params)
     task.save!
     render_notice(t("successfully_created"))
   end
 
   def show
-    render_json({ task: @task })
+    render_json({ task: @task, assigned_user: @task.assigned_user })
   end
 
   def update
@@ -35,6 +35,6 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:title)
+      params.require(:task).permit(:title, :assigned_user_id)
     end
 end
