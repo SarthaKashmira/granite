@@ -13,6 +13,7 @@ const Form = ({
   users,
   setUserId,
   loading,
+  userId,
   handleSubmit,
 }) => {
   logger.info(assignedUser);
@@ -30,7 +31,7 @@ const Form = ({
 
   const isNotDirty = equals(initialValues.current, {
     title,
-    userId: assignedUser.id,
+    userId,
   });
 
   return (
