@@ -32,6 +32,7 @@ en:
   task:
     slug:
       immutable: "is immutable!"
+    not_found: "Couldn't find Task"
   # rest of the translations
   generic_error: "Something went wrong. Please try again later."
   successfully_created: "%{entity} was successfully created!"

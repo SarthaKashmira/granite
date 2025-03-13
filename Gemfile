@@ -51,6 +51,8 @@ gem "react-rails", "~> 2.7.1"
 # For testing the test-coverage
 gem "simplecov", require: false, group: :test
 
+gem "minitest-bisect"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
