@@ -13,6 +13,10 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: "18.12"
+      # - run: node --version
+      # - run: gem install bundler:2.2.20
+      # # install postgresql dependency
+      # - run: sudo apt update && sudo apt install postgresql-client
       - run:
           name: Install dependencies
           command: |
@@ -41,6 +45,7 @@ jobs:
       - run:
           name: Compile assets
           command: bundle exec rails webpacker:compile
+
 workflows:
   version: 2
   commit:
