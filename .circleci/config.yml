@@ -12,7 +12,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: "22.20"
+          node-version: "18.12"
       - run:
           name: Install dependencies
           command: |
