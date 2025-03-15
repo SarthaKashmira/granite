@@ -17,6 +17,7 @@ class Task < ApplicationRecord
   validate :slug_not_changed
 
   before_create :set_slug
+  after_create :log_task_details
 
   private
 
@@ -26,6 +27,10 @@ class Task < ApplicationRecord
       else
         completed.in_order_of(:status, %w(starred unstarred)).order("updated_at DESC")
       end
+    end
+
+    def log_task_details
+      TaskLoggerJob.perform_async(self.id)
     end
 
     def set_slug
