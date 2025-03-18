@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :tasks, except: %i[new edit], param: :slug
+        resource :preference, only: %i[show update] do
+          patch :mail, on: :collection
+        end
         resources :users, only: %i[index create]
         resource :session, only: [:create, :destroy]
         resources :comments, only: [:create, :destroy]
