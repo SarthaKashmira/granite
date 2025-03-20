@@ -16,6 +16,8 @@ class User < ApplicationRecord
     user.has_one :preference, foreign_key: :user_id
   end
 
+  has_one_attached :report
+
   has_secure_password
   has_secure_token :authentication_token
 

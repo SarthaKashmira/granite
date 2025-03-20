@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   constraints(lambda { |req| req.format == :json }) do
     namespace :api do
       namespace :v1 do
-        resources :tasks, except: %i[new edit], param: :slug
+        resources :tasks, except: %i[new edit], param: :slug do
+          collection do
+            resource :report, only: %i[create], module: :tasks do
+              get :download, on: :collection
+            end
+          end
+        end
         resource :preference, only: %i[show update] do
           patch :mail, on: :collection
         end
