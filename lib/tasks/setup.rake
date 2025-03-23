@@ -23,9 +23,14 @@ end
 
 def create_sample_data!
   puts 'Seeding with sample data...'
+
+  User.where(email: ['oliver@example.com', 'sam@example.com']).destroy_all
+  puts '🗑️ Removed existing users (if any).'
+
   create_user! email: 'oliver@example.com', name: 'Oliver'
   create_user! email: 'sam@example.com', name: 'Sam'
-  puts 'Done! Now you can login with either "oliver@example.com" or "sam@example.com", using password "welcome"'
+
+  puts 'Done! Now you can log in with either "oliver@example.com" or "sam@example.com", using password "welcome".'
 end
 
 def create_user!(options = {})
