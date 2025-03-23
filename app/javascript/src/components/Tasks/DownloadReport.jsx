@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import FileSaver from "file-saver";
+import { useHistory } from "react-router-dom";
 
 import tasksApi from "apis/tasks";
 import createConsumer from "channels/consumer";
@@ -13,6 +14,7 @@ const DownloadReport = () => {
   const [message, setMessage] = useState("");
 
   const consumer = createConsumer();
+  const history = useHistory();
 
   const generatePdf = async () => {
     try {
@@ -31,6 +33,7 @@ const DownloadReport = () => {
       logger.error(error);
     } finally {
       setIsLoading(false);
+      history.push("/");
     }
   };
 

@@ -50,6 +50,8 @@ gem "shakapacker", "~> 6.6.0"
 gem "pry-byebug"
 gem "react-rails", "~> 2.7.1"
 
+gem "redis", "~> 4.0"
+
 # For testing the test-coverage
 gem "simplecov", require: false, group: :test
 
